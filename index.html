@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SusuCrochet</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    width:100vw;
+    height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:
+        radial-gradient(circle at top left,#fff0f6,transparent 40%),
+        radial-gradient(circle at bottom right,#d8fff0,transparent 40%),
+        linear-gradient(135deg,#ffe4ec,#fff7d6,#d8f7ff);
+}
+
+/* CONTENEDOR */
+
+.logo-container{
+    position:relative;
+    width:min(90vw,1200px);
+}
+
+/* LOGO */
+
+.logo{
+    width:100%;
+    display:block;
+
+    clip-path: inset(0 100% 0 0);
+
+    animation:
+        tejer 6s ease-out forwards,
+        flotar 4s ease-in-out infinite 6s;
+}
+
+/* AGUJA */
+
+.aguja{
+    position:absolute;
+
+    top:50%;
+    left:-40px;
+
+    width:90px;
+    height:10px;
+
+    background:linear-gradient(
+        to right,
+        #cfcfcf,
+        #f7f7f7,
+        #a8a8a8
+    );
+
+    border-radius:30px;
+
+    transform:translateY(-50%) rotate(-15deg);
+
+    box-shadow:
+        0 0 10px rgba(255,255,255,0.7);
+
+    animation:agujaMover 6s ease-out forwards;
+}
+
+/* PUNTA */
+
+.aguja::after{
+    content:"";
+
+    position:absolute;
+    right:-10px;
+    top:0;
+
+    width:0;
+    height:0;
+
+    border-top:5px solid transparent;
+    border-bottom:5px solid transparent;
+    border-left:12px solid #f7f7f7;
+}
+
+/* BRILLO */
+
+.brillo{
+    position:absolute;
+
+    top:50%;
+    left:0;
+
+    width:120px;
+    height:120px;
+
+    transform:translate(-50%,-50%);
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,0.95) 0%,
+            rgba(255,255,255,0.3) 30%,
+            rgba(255,255,255,0) 70%
+        );
+
+    pointer-events:none;
+
+    animation:brilloMover 6s ease-out forwards;
+}
+
+/* HILO */
+
+.hilo{
+    position:absolute;
+
+    top:50%;
+    left:0;
+
+    width:0;
+
+    height:3px;
+
+    background:#ff8eb4;
+
+    border-radius:10px;
+
+    transform:translateY(-50%);
+
+    animation:hiloMover 6s ease-out forwards;
+}
+
+/* APARICIÓN */
+
+@keyframes tejer{
+
+    from{
+        clip-path: inset(0 100% 0 0);
+    }
+
+    to{
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+/* AGUJA */
+
+@keyframes agujaMover{
+
+    0%{
+        left:-50px;
+        opacity:1;
+    }
+
+    95%{
+        left:100%;
+        opacity:1;
+    }
+
+    100%{
+        left:100%;
+        opacity:0;
+    }
+}
+
+/* BRILLO */
+
+@keyframes brilloMover{
+
+    0%{
+        left:0%;
+        opacity:1;
+    }
+
+    95%{
+        left:100%;
+        opacity:1;
+    }
+
+    100%{
+        left:100%;
+        opacity:0;
+    }
+}
+
+/* HILO */
+
+@keyframes hiloMover{
+
+    from{
+        width:0%;
+    }
+
+    to{
+        width:100%;
+    }
+}
+
+/* FLOTAR */
+
+@keyframes flotar{
+
+    0%,100%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-10px);
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="logo-container">
+
+    <img
+        src="susulogo.png"
+        alt="SusuCrochet"
+        class="logo">
+
+    <div class="hilo"></div>
+    <div class="aguja"></div>
+    <div class="brillo"></div>
+
+</div>
+
+</body>
+  </html>
