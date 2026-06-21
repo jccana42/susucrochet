@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SusuCrochet</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:
+        radial-gradient(circle at 20% 20%, #fff3fa 0%, transparent 35%),
+        radial-gradient(circle at 80% 80%, #dfffee 0%, transparent 35%),
+        linear-gradient(135deg, #ffe2ef, #fff8d8, #ddf7ff);
+}
+
+/* ESCENA GENERAL */
+
+.scene{
+    position:relative;
+    width:100vw;
+    height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* BRILLOS GRANDES DE FONDO */
+
+.glow{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(18px);
+    opacity:.65;
+    animation:glowMove 8s ease-in-out infinite alternate;
+}
+
+.glow.one{
+    width:420px;
+    height:420px;
+    background:rgba(255,150,205,.45);
+    top:14%;
+    left:16%;
+}
+
+.glow.two{
+    width:360px;
+    height:360px;
+    background:rgba(170,255,220,.5);
+    bottom:12%;
+    right:14%;
+    animation-delay:1.5s;
+}
+
+.glow.three{
+    width:260px;
+    height:260px;
+    background:rgba(255,255,180,.45);
+    top:58%;
+    left:42%;
+    animation-delay:3s;
+}
+
+/* LOGO */
+
+.logo-wrap{
+    position:relative;
+    z-index:10;
+    animation:floatLogo 4.5s ease-in-out infinite;
+}
+
+.logo{
+    width:min(78vw,760px);
+    display:block;
+    filter:
+        drop-shadow(0 18px 24px rgba(130,60,100,.28))
+        drop-shadow(0 0 22px rgba(255,255,255,.95));
+}
+
+/* ARO SUAVE DETRÁS DEL LOGO */
+
+.logo-wrap::before{
+    content:"";
+    position:absolute;
+    inset:-45px;
+    z-index:-1;
+    border-radius:45px;
+    background:rgba(255,255,255,.28);
+    backdrop-filter:blur(7px);
+    box-shadow:
+        0 0 60px rgba(255,255,255,.75),
+        inset 0 0 35px rgba(255,255,255,.55);
+}
+
+/* PARTÍCULAS */
+
+.particle{
+    position:absolute;
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:rgba(255,255,255,.85);
+    box-shadow:0 0 14px rgba(255,255,255,.95);
+    animation:particleFloat 11s linear infinite;
+    opacity:0;
+}
+
+.p1{ left:8%;  bottom:-30px; animation-delay:0s; }
+.p2{ left:18%; bottom:-30px; animation-delay:2s; width:7px; height:7px; }
+.p3{ left:31%; bottom:-30px; animation-delay:4s; }
+.p4{ left:47%; bottom:-30px; animation-delay:1s; width:6px; height:6px; }
+.p5{ left:63%; bottom:-30px; animation-delay:5s; }
+.p6{ left:75%; bottom:-30px; animation-delay:3s; width:8px; height:8px; }
+.p7{ left:90%; bottom:-30px; animation-delay:6s; }
+
+/* CORAZONES Y FLORES */
+
+.decor{
+    position:absolute;
+    z-index:4;
+    font-size:34px;
+    opacity:.72;
+    filter:drop-shadow(0 4px 10px rgba(150,80,120,.22));
+    animation:decorFloat 9s ease-in-out infinite;
+}
+
+.heart1{ top:18%; left:12%; animation-delay:0s; }
+.heart2{ top:68%; right:13%; animation-delay:2s; font-size:42px; }
+.heart3{ top:30%; right:21%; animation-delay:4s; font-size:26px; }
+
+.flower1{ top:65%; left:18%; animation-delay:1s; }
+.flower2{ top:20%; right:10%; animation-delay:3s; font-size:38px; }
+.flower3{ bottom:13%; left:43%; animation-delay:5s; font-size:30px; }
+
+/* ESTRELLITAS DE BRILLO */
+
+.sparkle{
+    position:absolute;
+    z-index:5;
+    font-size:24px;
+    color:white;
+    text-shadow:0 0 12px white;
+    animation:sparkleBlink 2.6s ease-in-out infinite;
+}
+
+.s1{ top:24%; left:32%; animation-delay:.2s; }
+.s2{ top:34%; right:28%; animation-delay:1s; }
+.s3{ bottom:28%; left:26%; animation-delay:1.8s; }
+.s4{ bottom:22%; right:32%; animation-delay:.7s; }
+
+/* ANIMACIONES */
+
+@keyframes floatLogo{
+    0%,100%{
+        transform:translateY(0) rotate(-1deg);
+    }
+
+    50%{
+        transform:translateY(-18px) rotate(1deg);
+    }
+}
+
+@keyframes glowMove{
+    from{
+        transform:translate(0,0) scale(1);
+    }
+
+    to{
+        transform:translate(35px,-25px) scale(1.12);
+    }
+}
+
+@keyframes particleFloat{
+    0%{
+        transform:translateY(0) translateX(0) scale(.6);
+        opacity:0;
+    }
+
+    15%{
+        opacity:.9;
+    }
+
+    70%{
+        opacity:.75;
+    }
+
+    100%{
+        transform:translateY(-115vh) translateX(45px) scale(1.4);
+        opacity:0;
+    }
+}
+
+@keyframes decorFloat{
+    0%,100%{
+        transform:translateY(0) rotate(-6deg) scale(1);
+    }
+
+    50%{
+        transform:translateY(-24px) rotate(7deg) scale(1.08);
+    }
+}
+
+@keyframes sparkleBlink{
+    0%,100%{
+        opacity:.15;
+        transform:scale(.6) rotate(0deg);
+    }
+
+    50%{
+        opacity:1;
+        transform:scale(1.25) rotate(20deg);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="scene">
+
+    <div class="glow one"></div>
+    <div class="glow two"></div>
+    <div class="glow three"></div>
+
+    <div class="particle p1"></div>
+    <div class="particle p2"></div>
+    <div class="particle p3"></div>
+    <div class="particle p4"></div>
+    <div class="particle p5"></div>
+    <div class="particle p6"></div>
+    <div class="particle p7"></div>
+
+    <div class="decor heart1">💗</div>
+    <div class="decor heart2">💖</div>
+    <div class="decor heart3">💕</div>
+
+    <div class="decor flower1">🌸</div>
+    <div class="decor flower2">🌼</div>
+    <div class="decor flower3">🌷</div>
+
+    <div class="sparkle s1">✦</div>
+    <div class="sparkle s2">✧</div>
+    <div class="sparkle s3">✦</div>
+    <div class="sparkle s4">✧</div>
+
+    <div class="logo-wrap">
+        <img src="susulogo.png" alt="SusuCrochet" class="logo">
+    </div>
+
+</div>
+
+</body>
+  </html>
